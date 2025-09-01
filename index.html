@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>VAE-SiFiGAN: Source-Filter HiFi-GAN Based on Variational Autoencoder Representations with Enhanced Pitch Controllability - Demo Site</title>
+  <!-- Google Fonts: Noto Sans JP -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <h1>VAE-SiFiGAN: Source-Filter HiFi-GAN Based on Variational Autoencoder Representations with Enhanced Pitch Controllability - Demo Site</h1>
+  </header>
+
+  <main class="container">
+    <!-- タイトルと著者情報（中央揃え） -->
+    <section class="paper_info">
+      <h2 class="title">VAE-SiFiGAN: Source-Filter HiFi-GAN Based on Variational Autoencoder Representations with Enhanced Pitch Controllability</h2>
+      <h3 class="author">Kenichi Ogita, Reo Yoneyama, Wen-Chin Huang, Tomoki Toda<br>Nagoya University, Nagoya, Japan</h3>
+    </section>
+
+    <!-- 客観評価結果（中央揃え） -->
+    <section class="figure-section">
+      <figure class="spectrogram-figure">
+        <img src="./img/objective.png" alt="客観評価結果の図" />
+        <figcaption>Objective evaluation results for singing voices with F0 conversion at scaling factors from 0.5× to 3.0× (0.25× intervals).</figcaption>
+      </figure>
+    </section>
+    
+    <!-- 主観評価結果（中央揃え） -->
+    <section class="figure-section">
+      <figure class="spectrogram-figure">
+        <img src="./img/mos.png" alt="主観評価結果の図" />
+        <figcaption>Results of MOS test on subjective speech quality for reconstructed singing voices and singing voices with F0 conversion to F0×0.5 and F0×2.0. 22 Japanese speakers participated, and 12 samples were evaluated for each method and each F0 conversion condition.</figcaption>
+      </figure>
+    </section>
+
+    <!-- スペクトログラム画像（中央揃え） -->
+    <section class="figure-section">
+      <figure class="spectrogram-figure">
+        <img src="./img/spectrogram.png" alt="スペクトログラム例" />
+        <figcaption>Spectrograms of singing voices output from each model. (BC-seg20)</figcaption>
+      </figure>
+    </section>
+
+    <!-- デモセクション（以降は左揃え） -->
+    <section class="demo-section left-align">
+      <h2 class="section-heading">Demo</h2>
+
+      <!-- データセット＆モデル説明 -->
+      <div class="description">
+        <p>
+          We used the Namine Ritsu's singing voice dataset [1], which consists of 110 Japanese songs by a single female singer, for training.
+        </p>
+        <p class="model-details">
+          <h3>Model Details</h3><br>
+          • <b>SiFi-GAN [2]</b>: Baseline model. Conditioned on MGC+BAP.<br>
+          • <b>VAE-SiFiGAN</b>: VAE-SiFiGAN with F0-removal mechanism. Posterior Encoder is conditioned on MEL, Prior Encoder is conditioned on MGC+BAP.<br>
+          • <b>w/o Prior</b>: VAE-SiFiGAN without F0-removal mechanism. Posterior Encoder is conditioned on MEL, and the prior distribution is set to standard normal distribution.<br>
+        </p>
+      </div>
+
+      <!-- 音声IDを選択するプルダウン ＋ OKボタン -->
+      <div class="select-section">
+        <label for="audioIdSelect">Select Audio:</label>
+        <select id="audioIdSelect">
+          <option value="1st_color_seg1">1st_color_seg1</option>
+          <option value="1st_color_seg18">1st_color_seg18</option>
+          <option value="ARROW_seg5">ARROW_seg5</option>
+          <option value="ARROW_seg10">ARROW_seg10</option>
+          <option value="ARROW_seg11">ARROW_seg11</option>
+          <option value="BC_seg2">BC_seg2</option>
+          <option value="BC_seg19">BC_seg19</option>
+          <option value="BC_seg20" selected="">BC_seg20</option>
+          <option value="Closetoyou_seg7">Closetoyou_seg7</option>
+          <option value="Closetoyou_seg24">Closetoyou_seg24</option>
+          <option value="ERROR_seg3">ERROR_seg3</option>
+          <option value="ERROR_seg21">ERROR_seg21</option>
+        </select>
+        <button id="changeBtn">OK</button>
+      </div>
+
+      <!-- デモ音声再生テーブル -->
+      <table class="audio-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>F0×1.0</th>
+            <th>F0×0.5</th>
+            <th>F0×2.0</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 自然音声 -->
+          <tr>
+            <td>Natural</td>
+            <td>
+              <audio id="natural_f1.0" controls preload="none"></audio>
+            </td>
+            <td><!-- 空白 --></td>
+            <td><!-- 空白 --></td>
+          </tr>
+          <!-- SiFi-GAN -->
+          <tr>
+            <td>SiFi-GAN</td>
+            <td>
+              <audio id="sifigan_f1.0" controls preload="none"></audio>
+            </td>
+            <td>
+              <audio id="sifigan_f0.5" controls preload="none"></audio>
+            </td>
+            <td>
+              <audio id="sifigan_f2.0" controls preload="none"></audio>
+            </td>
+          </tr>
+          <!-- VAE-SiFiGAN -->
+          <tr>
+            <td>VAE-SiFiGAN</td>
+            <td>
+              <audio id="vae_sifigan_f1.0" controls preload="none"></audio>
+            </td>
+            <td>
+              <audio id="vae_sifigan_f0.5" controls preload="none"></audio>
+            </td>
+            <td>
+              <audio id="vae_sifigan_f2.0" controls preload="none"></audio>
+            </td>
+          </tr>
+          <!-- w/o Prior -->
+          <tr>
+            <td>w/o Prior</td>
+            <td>
+              <audio id="woprior_f1.0" controls preload="none"></audio>
+            </td>
+            <td>
+              <audio id="woprior_f0.5" controls preload="none"></audio>
+            </td>
+            <td>
+              <audio id="woprior_f2.0" controls preload="none"></audio>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 参考文献（左揃え） -->
+    <section class="references left-align">
+      <h2 class="section-heading">References</h2>
+      <p>[1] Canon, [NamineRitsu] Blue (YOASOBI) [ENUNU model Ver.2, Singing DBVer.2 release], https://www.youtube.com/watch?v=pKeo9IE_L1I, Accessed: 2024.1.30.</p>
+      <p>[2] R. Yoneyama, Y.-C. Wu, and T. Toda, “Source-Filter HiFiGAN: Fast and Pitch Controllable High-Fidelity Neural Vocoder,” in Proc. ICASSP, 2023, pp. 1–5.</p>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p>© Kenichi Ogita</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="./js/script.js"></script>
+</body>
+</html>

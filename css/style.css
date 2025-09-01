@@ -1,0 +1,177 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    /* 全体は中央揃え（ブロック要素は個別に上書き） */
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 10px 15px;
+  }
+  
+  /* ヘッダー */
+  .site-header {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  .site-header h1 {
+    margin: 0;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  /* タイトルと著者（中央揃え） */
+  .paper_info {
+    margin: 20px 0;
+  }
+  .paper_info .title {
+    font-size: 24px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  .paper_info .author {
+    font-size: 18px;
+    color: #777;
+    font-weight: 300;
+    text-align: center;
+  }
+  
+  /* 図の枠組み（中央揃え） */
+  .spectrogram-figure {
+    display: block;
+    width: 70%;
+    max-width: 960px;
+    border: 1px solid #aaa;
+    padding: 5px;
+    margin: 0 auto 20px auto;
+    box-sizing: border-box;
+  }
+  .spectrogram-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .spectrogram-figure figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+    text-align: center;
+  }
+  
+  /* セクション見出し（デモ、参考文献） */
+  .section-heading {
+    position: relative;
+    padding-left: 20px;
+    margin: 30px 0 20px;
+    text-align: left; /* 左揃え */
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .section-heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 2px;
+    background-color: #333;
+  }
+  
+  /* デモセクション以降は左揃え */
+  .left-align {
+    text-align: left !important;
+  }
+  
+  /* デモセクション */
+  .demo-section {
+    margin: 30px 0;
+  }
+  .demo-section .description {
+    margin-bottom: 20px;
+  }
+  .demo-section .model-details {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  /* 選択セクション */
+  .select-section {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .select-section label {
+    font-weight: bold;
+  }
+  
+  /* テーブル */
+  .audio-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .audio-table thead th {
+    background-color: #eaeaea;
+  }
+  .audio-table th,
+  .audio-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+  .audio-table audio {
+    width: 100%;
+  }
+  
+  /* 参考文献 */
+  .references {
+    margin-top: 40px;
+  }
+  .references h2 {
+    font-size: 20px;
+    text-align: left;
+  }
+  .references p {
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  /* フッター */
+  .site-footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #fafafa;
+    border-top: 1px solid #ccc;
+    margin-top: 40px;
+    font-size: 14px;
+  }
+  
+  /* スマホ対応：768px以下 */
+  @media screen and (max-width: 768px) {
+    .spectrogram-figure {
+      width: 95%;
+    }
+    .select-section {
+      flex-direction: column;
+      align-items: center;
+    }
+    .audio-table th, .audio-table td {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  
