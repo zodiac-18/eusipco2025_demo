@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>VAE-SiFiGAN: Source-Filter HiFi-GAN Based on Variational Autoencoder Representations with Enhanced Pitch Controllability - Demo Site</title>
-  <!-- Google Fonts: Noto Sans JP -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Noto Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;700&display=swap" rel="stylesheet">
   <!-- CSS -->
   <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -35,7 +35,7 @@
     <section class="figure-section">
       <figure class="spectrogram-figure">
         <img src="./img/mos.png" alt="主観評価結果の図" />
-        <figcaption>Results of MOS test on subjective speech quality for reconstructed singing voices and singing voices with F0 conversion to F0×0.5 and F0×2.0. 22 Japanese speakers participated, and 12 samples were evaluated for each method and each F0 conversion condition.</figcaption>
+        <figcaption>Results of MOS test on perceptual sound quality for reconstructed singing voices and singing voices with F0 conversion to F0×0.5 and F0×2.0. 22 Japanese speakers participated, and 12 samples were evaluated for each method and each F0 conversion condition.</figcaption>
       </figure>
     </section>
 
@@ -43,7 +43,7 @@
     <section class="figure-section">
       <figure class="spectrogram-figure">
         <img src="./img/spectrogram.png" alt="スペクトログラム例" />
-        <figcaption>Spectrograms of singing voices output from each model. (BC-seg20)</figcaption>
+        <figcaption>Spectrograms of the F0-converted singing voices by each model. (BC-seg20)</figcaption>
       </figure>
     </section>
 
@@ -54,13 +54,13 @@
       <!-- データセット＆モデル説明 -->
       <div class="description">
         <p>
-          We used the Namine Ritsu's singing voice dataset [1], which consists of 110 Japanese songs by a single female singer, for training.
+          We used the Namine Ritsu's singing voice dataset [1], which consists of 110 Japanese songs by a single female singer.
         </p>
         <p class="model-details">
           <h3>Model Details</h3><br>
           • <b>SiFi-GAN [2]</b>: Baseline model. Conditioned on MGC+BAP.<br>
-          • <b>VAE-SiFiGAN</b>: VAE-SiFiGAN with F0-removal mechanism. Posterior Encoder is conditioned on MEL, Prior Encoder is conditioned on MGC+BAP.<br>
-          • <b>w/o Prior</b>: VAE-SiFiGAN without F0-removal mechanism. Posterior Encoder is conditioned on MEL, and the prior distribution is set to standard normal distribution.<br>
+          • <b>VAE-SiFiGAN</b>: VAE-SiFiGAN with F0-removal mechanism. Posterior Encoder was conditioned on MEL, Prior Encoder was conditioned on MGC+BAP.<br>
+          • <b>w/o Prior</b>: VAE-SiFiGAN without F0-removal mechanism. Posterior Encoder was conditioned on MEL, and the prior distribution was set to standard normal distribution.<br>
         </p>
       </div>
 
